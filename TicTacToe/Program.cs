@@ -1,34 +1,36 @@
 ﻿using System;
+
 namespace Mission3
 {
     class Program
     {
         public static void Main(string[] args)
         {
-            string[] board = new string[10]; // Create game board array to store player choices
-            int Player1Flag = 1;
+            string[] board = new string[10]; // Create game board array to store player's choices
+            int Player1Flag = 1; // Initialize varaibles
             int totalTurns = 0;
             int winnerFlag = 0;
 
             // Bring in Support Class
             Support support = new Support();
 
-            // Welcome user
+            // Welcome user to game
             Console.WriteLine("Welcome to Tic - Tac - Toe!");
 
             // Play Game
             // Ask each player for choice and update gameboard array
-            while (totalTurns < 10 && winnerFlag == 0)
+            while (totalTurns < 9 && winnerFlag == 0)
             {
                 // Player 1 Turn
                 if (Player1Flag == 1)
                 {
                     int choice = 0;
 
-                    //Print Board
-                    support.PrintBoard(board);
-                    Console.WriteLine("Player 1 Pick an available spot to place an ‘X’ ");
+                    support.PrintBoard(board); // Print Board
+                    Console.WriteLine("Player 1 Pick an available spot to place an ‘X’ "); // Ask for player choice
                     choice = Convert.ToInt32(Console.ReadLine()); // Update player choice
+                    Console.WriteLine("\n");
+
                     if (board[choice] == "X" || board[choice] == "O")
                     {
                         Console.WriteLine("Space already taken.Try again.");
@@ -42,10 +44,11 @@ namespace Mission3
                 }
 
                 // Check Winner
-                string winner = support.Winner(board);
+                string winner = support.Winner(board); // Call supporting class
+
                 if (winner == "X")
                 {
-                    Console.WriteLine("Player 1 won!");
+                    Console.WriteLine("Player 1 won!"); // Notify player winner
                     winnerFlag = 1;
                     break;
                 }
@@ -57,13 +60,15 @@ namespace Mission3
                 }           
 
                 // Player 2 Turn
-                if (Player1Flag == 0 && totalTurns < 10)
+                if (totalTurns < 9 && Player1Flag == 0)
                 {
                     int choice = 0;
-                    // Print Board
-                    support.PrintBoard(board);
-                    Console.WriteLine("Player 2 Pick an available spot to place an 'O' ");
+                    
+                    support.PrintBoard(board); // Print Board
+                    Console.WriteLine("Player 2 Pick an available spot to place an 'O' "); // Ask for player choice
                     choice = Convert.ToInt32(Console.ReadLine()); // Update player choice
+                    Console.WriteLine("\n");
+
                     if (board[choice] == "X" || board[choice] == "O")
                     {
                         Console.WriteLine("Space already taken.Try again.");
@@ -75,12 +80,12 @@ namespace Mission3
                         totalTurns++;
                     }
                 }
+                
                 // Check Winner
-
-                winner = support.Winner(board);
+                winner = support.Winner(board); // Call supporting class
                 if (winner == "X")
                 {
-                    Console.WriteLine("Player 1 won!");
+                    Console.WriteLine("Player 1 won!"); // Notify player winner
                     winnerFlag = 1;
                     break;
                 }
@@ -90,9 +95,8 @@ namespace Mission3
                     winnerFlag = 1;
                     break;
                 }
-
-                
             }
+
             // Print Board after a win
             if (winnerFlag == 1)
             {

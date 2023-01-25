@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Mission3
 {
     public class Support
     {
         //Method 1: Print current board based on board array received
-        public void PrintBoard(string[] board)
+        public void PrintBoard(string[] board) // Receive board array
         {
             Console.WriteLine(" " + board[1] + " | " + board[2] + " | " + board[3] + " ");
             Console.WriteLine("-----------");
@@ -19,7 +17,7 @@ namespace Mission3
 
         //Method 2: Determine if winner and return the letter of the winner based on updated board array received
 
-        public string Winner(string[] board)
+        public string Winner(string[] board) // Receive board array
         {
             string winningString = "";
 
